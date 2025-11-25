@@ -8,7 +8,7 @@ from core.response import InlineKeyboardData
 from settings.response import messages
 
 
-router = Router(
+router: Router = Router(
     name=models_settings.music_models.new_music.SERVICE_NAME,
 )
 
@@ -18,7 +18,9 @@ router = Router(
     F.data == models_settings.music_models.CALLBACK_BUTTON_DATA_NEW_MUSIC,
 )
 async def music(call: CallbackQuery):
-
+    """
+    Возвращает инлайн кнопки с варинтами выбора для музыкальных новинок.
+    """
     await call.message.edit_reply_markup(reply_markup=None)
 
     await call.message.answer(
