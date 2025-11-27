@@ -89,7 +89,6 @@ async def get_message_by_kinopoisk(message: Message, state: FSMContext) -> None:
     """
     current_state: Optional[str] = await state.get_state()
 
-    print(current_state, 11)
     if current_state == "FSMVideoKinopoisk:recommender_list":
         await message.reply(text=messages.MENU_CANCEL_MESSAGE)
         return
