@@ -1,12 +1,13 @@
 import aiohttp
 
-from bot.extension import bot, dp, bot_settings, main_logger
+from bot.extension import bot, dp, bot_settings, main_logger, models_settings
 from bot.views import main_router
 from app_utils.filesistem import ensure_derictories
 
 # создаем общие пути
 ensure_derictories(
-    bot_settings.PATH_BOT_STATIC_FOLDER, bot_settings.PATH_BOT_TEMP_FOLDER,
+    bot_settings.PATH_BOT_STATIC_FOLDER,
+    models_settings.video_models.viewing_advice.kinopoisk.PATH_TO_FOLDER_DEFOLT_IMAGE_KINOPOISK,
 )
 
 

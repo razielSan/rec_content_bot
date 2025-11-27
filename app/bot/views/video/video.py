@@ -2,7 +2,7 @@ from aiogram import Router, F
 from aiogram.filters.state import StateFilter
 from aiogram.types import Message
 
-from bot.extension import models_settings
+from bot.extension import models_settings, bot
 from app_utils.keyboards import get_total_buttons_inline_kb
 from settings.response import messages
 from core.response import InlineKeyboardData
@@ -21,6 +21,15 @@ async def video(message: Message) -> None:
     """
     Возвращает инлайн кнопки с варинтами выбора для раздела видео раздела.
     """
+
+    # Удаляет сообщение которое было последним
+    try:
+        await bot.delete_message(
+            chat_id=message.chat.id, message_id=message.message_id - 1
+        )
+    except Exception:
+        pass
+
     await message.answer(
         text=messages.OPTIONS_BOT_MESSAGE,
         reply_markup=get_total_buttons_inline_kb(

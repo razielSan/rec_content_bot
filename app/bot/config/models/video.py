@@ -1,4 +1,5 @@
 from typing import Optional, Dict
+from pathlib import Path
 
 from pydantic import BaseModel
 
@@ -13,10 +14,22 @@ class Kinopoisk(BaseModel):
 
     # URL для запросов
     URL_SEARCH_VIDEO_NAME: str = (
-        "https://api.kinopoisk.dev/v1.4/movie/search?page=1&limit={}&query={}"
+        "https://api.kinopoisk.dev/v1.4/movie/search?page=1&limit={limit}&query={name}"
     )
     URL_SEARCH_UNIVERSAL_VIDEO: str = (
-        "https://api.kinopoisk.dev/v1.4/movie?page=1&limit={}"
+        "https://api.kinopoisk.dev/v1.4/movie?page=1&limit={limit}"
+    )
+
+    PATH_TO_FOLDER_DEFOLT_IMAGE_KINOPOISK: Path = (
+        Path(__file__).resolve().parent.parent.parent
+        / "static"
+        / "img"
+        / "video"
+        / "viewing_advice"
+        / "kinopoisk"
+    )
+    PATH_TO_FILENAME_DEFOLTE_IMAGE_KINOPOISK: Path = (
+        PATH_TO_FOLDER_DEFOLT_IMAGE_KINOPOISK / "none.png"
     )
 
     HEADERS: Dict = {
@@ -27,7 +40,7 @@ class Kinopoisk(BaseModel):
 
 class ViewingAdvieModels(BaseModel):
     """Общий класс для моделей для рекомендаций по названию фильма."""
-    
+
     SERVICE_NAME: str = "ViewingAdvie"
     SERVICE_ID: str = "viewing_advice"
 

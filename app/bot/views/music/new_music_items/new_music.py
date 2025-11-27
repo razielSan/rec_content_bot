@@ -17,9 +17,9 @@ router: Router = Router(
     StateFilter(None),
     F.data == models_settings.music_models.CALLBACK_BUTTON_DATA_NEW_MUSIC,
 )
-async def music(call: CallbackQuery):
+async def music(call: CallbackQuery) -> None:
     """
-    Возвращает инлайн кнопки с варинтами выбора для музыкальных новинок.
+    Возвращает инлайн кнопки с вариантами выбора для музыкальных новинок.
     """
     await call.message.edit_reply_markup(reply_markup=None)
 
